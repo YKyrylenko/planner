@@ -1,0 +1,19 @@
+#list {
+  width: 100%;
+  padding-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+
+#task-list-wrapper {
+  height: 100%;
+  border-top-right-radius: 550px;
+  background-color: white;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

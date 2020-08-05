@@ -1,0 +1,14 @@
+.MuiAppBar-positionFixed {
+  /* height: 10vh; */
+  flex-grow: 1;
+  justify-content: center;
+  height: 10vh;
+}
+
+.MuiSvgIcon-root {
+  font-size: 50px !important;
+}
+
+.header {
+  padding-bottom: 10vh;
+}

@@ -1,0 +1,70 @@
+.calendar {
+  height: 90vh;
+  overflow: hidden;
+}
+
+.calendar-header {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+}
+
+.calendar-body {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  /* margin: 20px; */
+  margin-top: 67px;
+}
+
+.week-day-name {
+  display: flex;
+  justify-content: center;
+  width: calc(100vw / 7);
+  padding: 10px;
+  font-size: 40px;
+  color: grey;
+  border: 1px solid grey;
+  border-bottom: 4px solid blue;
+}
+
+.day {
+  width: calc((100vw / 7) - 2px);
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  border: 1px solid grey;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+.current-day {
+  color: white;
+}
+
+.current-day::before {
+  content: " ";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  z-index: -1;
+  border: 0px solid black;
+  border-radius: 50%;
+  background-color: rgb(63, 81, 181);
+}
+
+.another-month-day {
+  color: gray;
+}
+
+.day:hover {
+  cursor: pointer;
+}
