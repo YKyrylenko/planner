@@ -16,7 +16,6 @@ const TasksOfDay = ({}) => {
   let tasks = useSelector((state) => state.tasksReducer.tasks);
 
   useEffect(() => {
-    console.log("effect");
     const date = new Date(year, month - 1, day);
     dispatch(getTasksOfDay(date));
   }, []);
