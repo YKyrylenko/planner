@@ -8,7 +8,7 @@ import AddTaskForm from "../add-task-form";
 
 import "./tasks-of-day.css";
 
-const TasksOfDay = ({}) => {
+const TasksOfDay = () => {
   const dispatch = useDispatch();
   const [openForm, setOpenForm] = useState(false);
   const { year, month, day } = useParams();

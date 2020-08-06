@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TaskListItem from "../task-list-item";
 
 import "./task-list.css";
