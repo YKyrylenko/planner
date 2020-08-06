@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import PropTypes from "prop-types";
 import { add } from "../../actions/taskActions";
 import { useDispatch } from "react-redux";
 
@@ -13,7 +13,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import "./add-task-form.css";
 
-const AddTaskForm = ({ open, handleClose, date }) => {
+const AddTaskForm = ({ open, date, handleClose }) => {
   const dispatch = useDispatch();
   const [task, setTask] = useState("");
 
@@ -57,4 +57,8 @@ const AddTaskForm = ({ open, handleClose, date }) => {
   );
 };
 
+AddTaskForm.propTypes = {
+  open: PropTypes.bool,
+  date: PropTypes.instanceOf(Date),
+};
 export default AddTaskForm;

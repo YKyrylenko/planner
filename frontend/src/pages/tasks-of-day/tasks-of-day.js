@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getTasksOfDay } from "../../actions/taskActions";
-import TaskList from "../task-list";
-import AddTaskForm from "../add-task-form";
+import TaskList from "../../components/task-list";
+import AddTaskForm from "../../components/add-task-form";
 
 import "./tasks-of-day.css";
 
