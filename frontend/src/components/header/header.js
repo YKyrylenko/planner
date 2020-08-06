@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../actions/authActions";
-import { _removeData } from "../../utils/localStorageUtils";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-
 import Drawer from "../drawer";
+import { _removeData } from "../../utils/localStorageUtils";
 
 import "./header.css";
 
@@ -18,11 +16,11 @@ const Header = () => {
 
   const month = useSelector((state) => state.calendarReducer.month);
 
-  const isLogined = useSelector((state) => state.authReducer.loginSuccess);
+  const isLogged = useSelector((state) => state.authReducer.loginSuccess);
 
   const [drawerState, setDrawerState] = useState(false);
 
-  const toggleDrawer = () => {
+  const closeDrawer = () => {
     setDrawerState(false);
   };
 
@@ -49,8 +47,8 @@ const Header = () => {
       </AppBar>
       <Drawer
         open={drawerState}
-        isLogined={isLogined}
-        closeDrawer={toggleDrawer}
+        isLogged={isLogged}
+        closeDrawer={closeDrawer}
         logout={handleLogout}
       ></Drawer>
     </div>

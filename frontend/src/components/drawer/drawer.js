@@ -1,48 +1,52 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
-
-import { Link } from "react-router-dom";
-
 import SwipeableDrawer from "@material-ui/core/Drawer";
 
 import "./drawer.css";
 
-const Drawer = ({ open, closeDrawer, isLogined, logout }) => {
+const Drawer = ({ open, closeDrawer, isLogged, logout }) => {
+  const onLogoutClick = () => {
+    closeDrawer();
+    logout();
+  };
+
   return (
-    <SwipeableDrawer open={open} onClose={() => closeDrawer()}>
-      {isLogined ? (
-        <List style={{ width: "80vw" }}>
-          <ListItem
-            button
-            key={"logout"}
-            onClick={() => {
-              closeDrawer();
-              logout();
-            }}
-          >
-            <ListItemIcon>{<ExitToAppIcon />}</ListItemIcon>
-            <ListItemText primary={"logout"} />
+    <SwipeableDrawer open={open} onClose={closeDrawer}>
+      <List style={{ width: "80vw" }}>
+        {isLogged && (
+          <ListItem button key="logout" onClick={onLogoutClick}>
+            <Link to="/calendar">
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="logout" />
+            </Link>
           </ListItem>
-        </List>
-      ) : (
-        <List style={{ width: "80vw" }}>
-          <Link to="/signup">
-            <ListItem button key={"signup"} onClick={() => closeDrawer()}>
-              <ListItemIcon>{<HowToRegIcon />}</ListItemIcon>
-              <ListItemText primary={"signup"} />
+        )}
+        {!isLogged && (
+          <React.Fragment>
+            <ListItem button key="signup" onClick={closeDrawer}>
+              <Link to="/signup">
+                <ListItemIcon>
+                  <HowToRegIcon />
+                </ListItemIcon>
+                <ListItemText primary="signup" />
+              </Link>
             </ListItem>
-          </Link>
-          <Link to="/login">
-            <ListItem button key={"login"} onClick={() => closeDrawer()}>
-              <ListItemIcon>{<ExitToAppIcon />}</ListItemIcon>
-              <ListItemText primary={"login"} />
+            <ListItem button key="login" onClick={closeDrawer}>
+              <Link to="/login">
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="login" />
+              </Link>
             </ListItem>
-          </Link>
-        </List>
-      )}
+          </React.Fragment>
+        )}
+      </List>
     </SwipeableDrawer>
   );
 };
