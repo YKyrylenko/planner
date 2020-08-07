@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../actions/authActions";
-
+import { inputLabelStyles, inputStyles } from "../../utils/formStyles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
 import ImageUploadButton from "../image-upload-button";
 import AlertDialogNotification from "../alert-dialog-notification";
 
 import "./signup-form.css";
+
+const createFormData = (img, formValues) => {
+  const data = new FormData();
+  data.append("userPhoto", img);
+  data.append("userData", JSON.stringify(formValues));
+  return data;
+};
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -32,13 +38,6 @@ const SignupForm = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const createFormData = (img, formValues) => {
-    const data = new FormData();
-    data.append("userPhoto", img);
-    data.append("userData", JSON.stringify(formValues));
-    return data;
-  };
-
   const onFormSubmin = (e) => {
     e.preventDefault();
     const data = createFormData(userPhoto.raw, userData);
@@ -51,22 +50,30 @@ const SignupForm = () => {
         <TextField
           label="name"
           name="name"
-          error={false}
+          InputLabelProps={{ style: inputLabelStyles }}
+          inputProps={{ style: inputStyles }}
+          fullWidth
           onChange={handleChange}
         />
         <TextField
           name="email"
           label="email"
           type="email"
+          InputLabelProps={{ style: inputLabelStyles }}
+          inputProps={{ style: inputStyles }}
+          fullWidth
           onChange={handleChange}
         />
         <TextField
           name="password"
           label="password"
           type="password"
+          InputLabelProps={{ style: inputLabelStyles }}
+          inputProps={{ style: inputStyles }}
+          fullWidth
           onChange={handleChange}
         />
-        <Button color="secondary" type="submit">
+        <Button color="secondary" type="submit" style={{ fontSize: "40px" }}>
           Create
         </Button>
         {/* <TextField

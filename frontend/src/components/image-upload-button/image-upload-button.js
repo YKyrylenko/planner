@@ -18,7 +18,7 @@ const ImageUploadButton = ({ uploadUserPhoto }) => {
       <label htmlFor="upload-button">
         <Avatar
           src={photo}
-          style={{ width: "200px", height: "200px" }}
+          style={{ width: "400px", height: "400px" }}
         ></Avatar>
       </label>
       {/* </Fab> */}

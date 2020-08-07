@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/authActions";
-
+import { inputLabelStyles, inputStyles } from "../../utils/formStyles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -34,6 +34,9 @@ const LoginForm = () => {
           label="email"
           type="email"
           required
+          InputLabelProps={{ style: inputLabelStyles }}
+          inputProps={{ style: inputStyles }}
+          style={{ marginBottom: "120px" }}
           onChange={onHandleChange}
         />
         <TextField
@@ -41,9 +44,12 @@ const LoginForm = () => {
           label="password"
           type="password"
           required
+          InputLabelProps={{ style: inputLabelStyles }}
+          inputProps={{ style: inputStyles }}
+          style={{ marginBottom: "120px" }}
           onChange={onHandleChange}
         />
-        <Button type="submit" color="secondary">
+        <Button type="submit" color="secondary" style={{ fontSize: "40px" }}>
           Login
         </Button>
       </form>
