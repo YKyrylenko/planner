@@ -8,9 +8,10 @@ const TaskList = ({ tasks }) => {
   return (
     <div id="task-list-wrapper">
       <div id="list">
-        {tasks.map((task) => (
-          <TaskListItem text={task.text} />
-        ))}
+        {tasks.map((task) => {
+          const { id, text } = task;
+          return <TaskListItem key={id} text={text} />;
+        })}
       </div>
     </div>
   );

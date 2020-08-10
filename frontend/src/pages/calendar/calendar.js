@@ -80,7 +80,7 @@ const Calendar = () => {
 
   useEffect(() => {
     dispatch(setMonth(months[selectedDate.getMonth()]));
-  }, []);
+  }, [dispatch, selectedDate]);
 
   return (
     <div className="calendar">

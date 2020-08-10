@@ -18,7 +18,7 @@ const TasksOfDay = () => {
   useEffect(() => {
     const date = new Date(year, month - 1, day);
     dispatch(getTasksOfDay(date));
-  }, [tasks]);
+  }, [dispatch, year, month, day]);
 
   const onHandleClose = () => {
     setOpenForm(false);
