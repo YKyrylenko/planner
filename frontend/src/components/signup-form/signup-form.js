@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../actions/authActions";
 import { isEmail } from "../../utils/validations";
+import { makeStyles } from "@material-ui/styles";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -18,7 +19,19 @@ const createFormData = (img, formValues) => {
   return data;
 };
 
+const useStyles = makeStyles({
+  root: {
+    "& .MuiInput-root , .MuiInputLabel-root ": {
+      fontSize: "40px",
+    },
+    "& .MuiFormHelperText-root.Mui-error ": {
+      fontSize: "20px",
+    },
+  },
+});
+
 const SignupForm = () => {
+  const { root } = useStyles();
   const { register, handleSubmit, setError, clearErrors, errors } = useForm();
   const dispatch = useDispatch();
   const isRegistered = useSelector((state) => state.authReducer.signupSuccess);
@@ -54,6 +67,7 @@ const SignupForm = () => {
           label="name"
           name="name"
           type="text"
+          className={root}
           error={!!errors.name}
           helperText={errors.name && "This field is required"}
           inputRef={register({ required: true })}
@@ -63,6 +77,7 @@ const SignupForm = () => {
           name="email"
           label="email"
           type="text"
+          className={root}
           error={!!errors.email}
           helperText={
             (errors.email &&
@@ -79,6 +94,7 @@ const SignupForm = () => {
           label="password"
           type="password"
           error={!!errors.password}
+          className={root}
           helperText={errors.password && "This field is required"}
           inputRef={register({ required: true })}
           fullWidth

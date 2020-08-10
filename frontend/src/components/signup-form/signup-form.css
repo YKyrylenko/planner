@@ -6,15 +6,3 @@
   justify-content: space-around;
   align-items: center;
 }
-
-.MuiFormHelperText-root.Mui-error {
-  font-size: 20px;
-}
-
-.MuiInputLabel-root {
-  font-size: 40px !important;
-}
-
-.MuiInput-root {
-  font-size: 40px !important;
-}

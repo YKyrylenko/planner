@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/authActions";
 import { isEmail } from "../../utils/validations";
+import { makeStyles } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -10,7 +11,20 @@ import AlertDialogNotification from "../alert-dialog-notification";
 
 import "./login-form.css";
 
+const useStyles = makeStyles({
+  root: {
+    "& .MuiInput-root , .MuiInputLabel-root ": {
+      fontSize: "40px",
+    },
+    "& .MuiFormHelperText-root.Mui-error ": {
+      fontSize: "20px",
+    },
+  },
+});
+
 const LoginForm = () => {
+  const { root } = useStyles();
+
   const { register, handleSubmit, setError, clearErrors, errors } = useForm();
   const dispatch = useDispatch();
   const isLogined = useSelector((state) => state.authReducer.loginSuccess);
@@ -37,6 +51,7 @@ const LoginForm = () => {
           name="email"
           label="email"
           type="text"
+          className={root}
           error={!!errors.email}
           helperText={
             (errors.email &&
@@ -54,6 +69,7 @@ const LoginForm = () => {
           name="password"
           label="password"
           type="password"
+          className={root}
           error={!!errors.password}
           helperText={errors.password && "This field is required"}
           inputRef={register({ required: true })}

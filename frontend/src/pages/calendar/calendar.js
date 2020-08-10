@@ -19,10 +19,7 @@ const currentMonthDays = (date) => {
   for (let i = 1; i <= amountDaysInMonth; i++) {
     const link = `/tasks/${date.getFullYear()}/${date.getMonth() + 1}/${i}`;
     days.push(
-      <div
-        key={`${date.getMonth()}${i}`}
-        className={i === currentDay ? "day current-day" : "day"}
-      >
+      <div className={i === currentDay ? "day current-day" : "day"}>
         <Link to={link}>{i}</Link>
       </div>
     );
@@ -45,7 +42,7 @@ const previousMonthDays = (date) => {
   ) {
     const link = `/tasks/${date.getFullYear()}/${date.getMonth() + 1}/${i}`;
     days.push(
-      <div key={`${date.getMonth()}${i}`} className="day another-month-day">
+      <div className="day another-month-day">
         <Link to={link}>{i}</Link>
       </div>
     );
