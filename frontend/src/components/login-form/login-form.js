@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions/authActions";
-import { inputLabelStyles, inputStyles } from "../../utils/formStyles";
+import { isEmail } from "../../utils/validations";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -10,44 +11,53 @@ import AlertDialogNotification from "../alert-dialog-notification";
 import "./login-form.css";
 
 const LoginForm = () => {
+  const { register, handleSubmit, setError, clearErrors, errors } = useForm();
   const dispatch = useDispatch();
   const isLogined = useSelector((state) => state.authReducer.loginSuccess);
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
 
-  const onHandleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+  const emailHandleChange = (e) => {
+    const { value, name } = e.target;
+    if (!isEmail(value)) {
+      setError(name, {
+        message: `Your email should be like "example@example.com" `,
+      });
+    } else {
+      clearErrors(name);
+    }
   };
 
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    dispatch(login(userData));
+  const onSubmit = (data) => {
+    dispatch(login(data));
   };
 
   return (
     <React.Fragment>
-      <form id="login-form" onSubmit={onSubmitForm}>
+      <form id="login-form" onSubmit={handleSubmit(onSubmit)}>
         <TextField
           name="email"
           label="email"
-          type="email"
-          required
-          InputLabelProps={{ style: inputLabelStyles }}
-          inputProps={{ style: inputStyles }}
+          type="text"
+          error={!!errors.email}
+          helperText={
+            (errors.email &&
+              errors.email?.type === "required" &&
+              "This fiels is required") ||
+            (errors.email && errors.email.message)
+          }
+          inputRef={register({
+            required: true,
+          })}
           style={{ marginBottom: "120px" }}
-          onChange={onHandleChange}
+          onChange={emailHandleChange}
         />
         <TextField
           name="password"
           label="password"
           type="password"
-          required
-          InputLabelProps={{ style: inputLabelStyles }}
-          inputProps={{ style: inputStyles }}
+          error={!!errors.password}
+          helperText={errors.password && "This field is required"}
+          inputRef={register({ required: true })}
           style={{ marginBottom: "120px" }}
-          onChange={onHandleChange}
         />
         <Button type="submit" color="secondary" style={{ fontSize: "40px" }}>
           Login

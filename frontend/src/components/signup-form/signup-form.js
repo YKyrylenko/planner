@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../actions/authActions";
-import { inputLabelStyles, inputStyles } from "../../utils/formStyles";
+import { isEmail } from "../../utils/validations";
+
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ImageUploadButton from "../image-upload-button";
@@ -17,6 +19,7 @@ const createFormData = (img, formValues) => {
 };
 
 const SignupForm = () => {
+  const { register, handleSubmit, setError, clearErrors, errors } = useForm();
   const dispatch = useDispatch();
   const isRegistered = useSelector((state) => state.authReducer.signupSuccess);
   const [userPhoto, setUserPhoto] = useState({
@@ -24,63 +27,65 @@ const SignupForm = () => {
     raw: "",
   });
 
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
   const uploadUserPhoto = (photo) => {
     setUserPhoto({ preview: URL.createObjectURL(photo), raw: photo });
   };
 
-  const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+  const emailHandleChange = (e) => {
+    const { value, name } = e.target;
+    if (!isEmail(value)) {
+      setError(name, {
+        message: `Your email should be like "example@example.com" `,
+      });
+    } else {
+      clearErrors(name);
+    }
   };
 
-  const onFormSubmin = (e) => {
-    e.preventDefault();
-    const data = createFormData(userPhoto.raw, userData);
-    dispatch(signup(data));
+  const onSubmit = (data) => {
+    const userData = createFormData(userPhoto.raw, data);
+    dispatch(signup(userData));
   };
   return (
     <React.Fragment>
-      <form id="signup-form" onSubmit={onFormSubmin}>
+      <form id="signup-form" onSubmit={handleSubmit(onSubmit)}>
         <ImageUploadButton uploadUserPhoto={uploadUserPhoto} />
         <TextField
           label="name"
           name="name"
-          InputLabelProps={{ style: inputLabelStyles }}
-          inputProps={{ style: inputStyles }}
+          type="text"
+          error={!!errors.name}
+          helperText={errors.name && "This field is required"}
+          inputRef={register({ required: true })}
           fullWidth
-          onChange={handleChange}
         />
         <TextField
           name="email"
           label="email"
-          type="email"
-          InputLabelProps={{ style: inputLabelStyles }}
-          inputProps={{ style: inputStyles }}
+          type="text"
+          error={!!errors.email}
+          helperText={
+            (errors.email &&
+              errors.email?.type === "required" &&
+              "This fiels is required") ||
+            (errors.email && errors.email.message)
+          }
+          inputRef={register({ required: true })}
           fullWidth
-          onChange={handleChange}
+          onChange={emailHandleChange}
         />
         <TextField
           name="password"
           label="password"
           type="password"
-          InputLabelProps={{ style: inputLabelStyles }}
-          inputProps={{ style: inputStyles }}
+          error={!!errors.password}
+          helperText={errors.password && "This field is required"}
+          inputRef={register({ required: true })}
           fullWidth
-          onChange={handleChange}
         />
         <Button color="secondary" type="submit" style={{ fontSize: "40px" }}>
           Create
         </Button>
-        {/* <TextField
-          name="confirmPassword"
-          placeholder="confirm password"
-          onChange={handleChange}
-        /> */}
       </form>
       {isRegistered && (
         <AlertDialogNotification

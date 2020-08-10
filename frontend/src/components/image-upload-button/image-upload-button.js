@@ -13,21 +13,19 @@ const ImageUploadButton = ({ uploadUserPhoto }) => {
   };
 
   return (
-    <React.Fragment>
-      {/* <Fab className="upload-fab"> */}
+    <div id="image-upload">
       <label htmlFor="upload-button">
         <Avatar
           src={photo}
           style={{ width: "400px", height: "400px" }}
         ></Avatar>
       </label>
-      {/* </Fab> */}
       <input
         id="upload-button"
         type="file"
         onChange={handleUploadImage}
       ></input>
-    </React.Fragment>
+    </div>
   );
 };
 
