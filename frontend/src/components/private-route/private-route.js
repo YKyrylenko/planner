@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
@@ -16,5 +17,10 @@ const PrivateRoute = ({ component, redirectTo, ...rest }) => {
       }
     />
   );
+};
+
+PrivateRoute.propTypes = {
+  component: PropTypes.elementType,
+  redirectTo: PropTypes.string,
 };
 export default PrivateRoute;

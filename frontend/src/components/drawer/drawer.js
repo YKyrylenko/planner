@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { List, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
@@ -7,7 +8,7 @@ import SwipeableDrawer from "@material-ui/core/Drawer";
 
 import "./drawer.css";
 
-const Drawer = ({ open, closeDrawer, isLogged, logout }) => {
+const Drawer = ({ open, isLogged, closeDrawer, logout }) => {
   const onLogoutClick = () => {
     closeDrawer();
     logout();
@@ -49,6 +50,11 @@ const Drawer = ({ open, closeDrawer, isLogged, logout }) => {
       </List>
     </SwipeableDrawer>
   );
+};
+
+Drawer.propTypes = {
+  open: PropTypes.bool,
+  isLogged: PropTypes.bool,
 };
 
 export default Drawer;

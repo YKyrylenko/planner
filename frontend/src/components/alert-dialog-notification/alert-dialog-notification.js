@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -37,6 +38,13 @@ const AlertDialogNotification = ({
       </Dialog>
     </div>
   );
+};
+
+AlertDialogNotification.propTypes = {
+  type: PropTypes.string,
+  title: PropTypes.string,
+  text: PropTypes.string,
+  redirectTo: PropTypes.string,
 };
 
 export default AlertDialogNotification;
