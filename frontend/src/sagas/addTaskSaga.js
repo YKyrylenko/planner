@@ -12,7 +12,6 @@ export function* addTaskSaga(task, date) {
     const response = yield call(add, task, date);
     yield put({ type: types.ADD_TASK_SUCCESS, response });
   } catch (error) {
-    console.log(error);
     yield put({ type: types.ADD_TASK_ERROR, error });
   }
 }

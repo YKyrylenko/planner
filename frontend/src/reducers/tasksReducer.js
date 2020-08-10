@@ -15,7 +15,6 @@ export const tasksReducer = (state = initialTasksState, action) => {
         getSuccess: true,
       };
     case types.ADD_TASK_SUCCESS:
-      console.log(...state.tasks);
       return {
         ...state,
         tasks: [...state.tasks, action.response.data],

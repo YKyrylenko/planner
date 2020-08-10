@@ -12,7 +12,6 @@ export function* getTaskOfDaySaga(date) {
     const response = yield call(getTasksOfDay, date);
     yield put({ type: types.GET_TASKS_OF_DAY_SUCCESS, response });
   } catch (error) {
-    console.log(error);
     yield put({ type: types.GET_TASKS_OF_DAY_ERROR, error });
   }
 }

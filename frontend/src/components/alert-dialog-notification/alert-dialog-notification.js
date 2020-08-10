@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -16,15 +17,7 @@ const AlertDialogNotification = ({
   text,
   redirectTo,
 }) => {
-  const [redirect, setRedirect] = useState(false);
-
-  const onHandleClick = (e) => {
-    setRedirect(true);
-  };
-
-  return redirect ? (
-    <Redirect to={`/${redirectTo}`} />
-  ) : (
+  return (
     <div id="alert-dialog-notification">
       <Dialog open>
         <DialogTitle>{title}</DialogTitle>
@@ -32,11 +25,20 @@ const AlertDialogNotification = ({
           <DialogContentText>{text}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onHandleClick}>OK</Button>
+          <Button component={Link} to={redirectTo}>
+            OK
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
+};
+
+AlertDialogNotification.propTypes = {
+  type: PropTypes.string,
+  title: PropTypes.string,
+  text: PropTypes.string,
+  redirectTo: PropTypes.string,
 };
 
 export default AlertDialogNotification;

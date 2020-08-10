@@ -1,6 +1,8 @@
 #signup-form {
+  height: 95%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: calc(100vh - 10vh);
+  align-items: center;
 }
