@@ -18,32 +18,44 @@ const Drawer = ({ open, isLogged, closeDrawer, logout }) => {
     <SwipeableDrawer open={open} onClose={closeDrawer}>
       <List style={{ width: "80vw" }}>
         {isLogged && (
-          <ListItem button key="logout" onClick={onLogoutClick}>
-            <Link to="/calendar">
-              <ListItemIcon>
-                <ExitToAppIcon />
-              </ListItemIcon>
-              <ListItemText primary="logout" />
-            </Link>
+          <ListItem
+            button
+            key="logout"
+            component={Link}
+            to="/calendar"
+            onClick={onLogoutClick}
+          >
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="logout" />
           </ListItem>
         )}
         {!isLogged && (
           <React.Fragment>
-            <ListItem button key="signup" onClick={closeDrawer}>
-              <Link to="/signup">
-                <ListItemIcon>
-                  <HowToRegIcon />
-                </ListItemIcon>
-                <ListItemText primary="signup" />
-              </Link>
+            <ListItem
+              button
+              key="signup"
+              component={Link}
+              to="/signup"
+              onClick={closeDrawer}
+            >
+              <ListItemIcon>
+                <HowToRegIcon />
+              </ListItemIcon>
+              <ListItemText primary="signup" />
             </ListItem>
-            <ListItem button key="login" onClick={closeDrawer}>
-              <Link to="/login">
-                <ListItemIcon>
-                  <ExitToAppIcon />
-                </ListItemIcon>
-                <ListItemText primary="login" />
-              </Link>
+            <ListItem
+              button
+              key="login"
+              component={Link}
+              to="/login"
+              onClick={closeDrawer}
+            >
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="login" />
             </ListItem>
           </React.Fragment>
         )}

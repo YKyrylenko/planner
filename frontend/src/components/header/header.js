@@ -24,6 +24,10 @@ const Header = () => {
     setDrawerState(false);
   };
 
+  const openDrawer = () => {
+    setDrawerState(true);
+  };
+
   const handleLogout = () => {
     dispatch(logout());
     _removeData("token");
@@ -38,7 +42,7 @@ const Header = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            onClick={() => setDrawerState(true)}
+            onClick={openDrawer}
           >
             <MenuIcon />
           </IconButton>

@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import PrivateRoute from "../private-route";
+import PrivateRoute from "../components/private-route";
 
-import Header from "../header";
-import Calendar from "../../pages/calendar";
-import Login from "../../pages/login";
-import Signup from "../../pages/signup";
-import TasksOfDay from "../../pages/tasks-of-day";
+import Header from "../components/header";
+import Calendar from "../pages/calendar";
+import Login from "../pages/login";
+import Signup from "../pages/signup";
+import TasksOfDay from "../pages/tasks-of-day";
 
 const Router = () => (
   <BrowserRouter>
